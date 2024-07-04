@@ -53,10 +53,12 @@ const ProductSchema = new Schema<IProduct, ProductModel>({
   variants: {
     type: [VariantSchema],
     required: [true, 'Variants are required'],
+    _id: false,
   },
   inventory: {
     type: InventorySchema,
     required: [true, 'Inventory information is required'],
+    _id: false,
   },
 });
 

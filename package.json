@@ -1,7 +1,7 @@
 {
-  "name": "advanced-crud-with-mongoose",
+  "name": "e-commerce-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "e-commerce-backend server made by Node, Express, Mongoose and TypeScript",
   "main": "index.js",
   "scripts": {
     "start:prod": "node ./dist/server.js",
