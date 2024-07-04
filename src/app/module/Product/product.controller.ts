@@ -18,8 +18,8 @@ const createProduct = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: err.message || 'something went wrong',
-      error: err,
+      message: 'Something went wrong',
+      error: err.message,
     });
   }
 };
@@ -37,8 +37,27 @@ const getAllProducts = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: err.message || 'Products not found',
-      error: err,
+      message: 'Products not found',
+      error: err.message,
+    });
+  }
+};
+
+const getSingleProducts = async (req: Request, res: Response) => {
+  try {
+    const result = await ProductServices.getSingleProductFromDB(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      message: 'Product fetched successfully!',
+      data: result,
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Product not found',
+      error: err.message,
     });
   }
 };
@@ -46,4 +65,5 @@ const getAllProducts = async (req: Request, res: Response) => {
 export const ProductControllers = {
   createProduct,
   getAllProducts,
+  getSingleProducts,
 };
