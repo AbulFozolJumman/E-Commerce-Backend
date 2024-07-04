@@ -12,6 +12,9 @@ const getAllProductFromDB = async () => {
 };
 
 const getSingleProductFromDB = async (productId: string) => {
+  if (!(await Product.isProductExists(productId))) {
+    throw new Error('Product does not Exist');
+  }
   const result = await Product.findById({ _id: productId });
   return result;
 };
@@ -20,6 +23,9 @@ const updateSingleProductIntoDB = async (
   productId: string,
   productData: IProduct,
 ) => {
+  if (!(await Product.isProductExists(productId))) {
+    throw new Error('Product does not Exist');
+  }
   const result = await Product.findByIdAndUpdate(
     { _id: productId },
     productData,
@@ -30,9 +36,18 @@ const updateSingleProductIntoDB = async (
   return result;
 };
 
+const deleteSingleProductFromDB = async (productId: string) => {
+  if (!(await Product.isProductExists(productId))) {
+    throw new Error('Product does not Exist');
+  }
+  const result = await Product.findByIdAndDelete({ _id: productId });
+  return result;
+};
+
 export const ProductServices = {
   createProductIntoDB,
   getAllProductFromDB,
   getSingleProductFromDB,
   updateSingleProductIntoDB,
+  deleteSingleProductFromDB,
 };
