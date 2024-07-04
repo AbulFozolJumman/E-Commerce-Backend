@@ -29,12 +29,6 @@ const InventorySchema = new Schema<IInventory>({
 });
 
 const ProductSchema = new Schema<IProduct, ProductModel>({
-  id: {
-    type: String,
-    required: [true, 'ID is required'],
-    unique: true,
-    index: true,
-  },
   name: {
     type: String,
     required: [true, 'Name is required'],
