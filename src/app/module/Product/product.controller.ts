@@ -43,9 +43,11 @@ const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-const getSingleProducts = async (req: Request, res: Response) => {
+const getSingleProduct = async (req: Request, res: Response) => {
   try {
-    const result = await ProductServices.getSingleProductFromDB(req.params.id);
+    const result = await ProductServices.getSingleProductFromDB(
+      req.params.productId,
+    );
 
     res.status(200).json({
       success: true,
@@ -62,8 +64,34 @@ const getSingleProducts = async (req: Request, res: Response) => {
   }
 };
 
+const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const productData = req.body;
+    const zodParsedData = ProductValidationSchema.parse(productData);
+
+    const result = await ProductServices.updateSingleProductIntoDB(
+      req.params.productId,
+      zodParsedData,
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
+      error: err.message,
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getAllProducts,
-  getSingleProducts,
+  getSingleProduct,
+  updateProduct,
 };
