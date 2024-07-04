@@ -1,4 +1,5 @@
-// types.ts
+import { Model } from 'mongoose';
+
 export type IVariant = {
   type: string;
   value: string;
@@ -10,6 +11,7 @@ export type IInventory = {
 };
 
 export type IProduct = {
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -18,3 +20,8 @@ export type IProduct = {
   variants: IVariant[];
   inventory: IInventory;
 };
+
+export interface ProductModel extends Model<IProduct> {
+  // eslint-disable-next-line no-unused-vars
+  isProductExists(id: string): Promise<IProduct | null>;
+}
