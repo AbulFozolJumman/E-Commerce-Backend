@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { IOrder } from './order.interface';
+import { IOrder, OrderModel } from './order.interface';
 
 const OrderSchema = new Schema<IOrder>(
   {
@@ -22,6 +22,11 @@ const OrderSchema = new Schema<IOrder>(
   },
 );
 
-const OrderModel = model<IOrder>('Order', OrderSchema);
+// Custom static method
+OrderSchema.statics.isOrderExists = async function (email: string) {
+  return await this.findOne({ email });
+};
 
-export default OrderModel;
+const Order = model<IOrder, OrderModel>('Order', OrderSchema);
+
+export default Order;

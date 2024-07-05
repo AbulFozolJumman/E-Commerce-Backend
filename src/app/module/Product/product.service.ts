@@ -13,7 +13,7 @@ const getAllProductFromDB = async () => {
 
 const getSingleProductFromDB = async (productId: string) => {
   if (!(await Product.isProductExists(productId))) {
-    throw new Error('Product does not Exist');
+    throw new Error('Product not found');
   }
   const result = await Product.findById({ _id: productId });
   return result;
@@ -24,7 +24,7 @@ const updateSingleProductIntoDB = async (
   productData: IProduct,
 ) => {
   if (!(await Product.isProductExists(productId))) {
-    throw new Error('Product does not Exist');
+    throw new Error('Product not found');
   }
   const result = await Product.findByIdAndUpdate(
     { _id: productId },
@@ -38,7 +38,7 @@ const updateSingleProductIntoDB = async (
 
 const deleteSingleProductFromDB = async (productId: string) => {
   if (!(await Product.isProductExists(productId))) {
-    throw new Error('Product does not Exist');
+    throw new Error('Product not found');
   }
   const result = await Product.findByIdAndDelete({ _id: productId });
   return result;

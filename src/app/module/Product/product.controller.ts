@@ -18,8 +18,7 @@ const createProduct = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Something went wrong',
-      error: err.message,
+      message: err.message,
     });
   }
 };
@@ -50,7 +49,7 @@ const getAllProducts = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Products not found',
+      message: 'Product not found',
       error: err.message,
     });
   }
@@ -96,7 +95,7 @@ const updateProduct = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({
       success: false,
-      message: 'Something went wrong',
+      message: 'Product not found',
       error: err.message,
     });
   }
