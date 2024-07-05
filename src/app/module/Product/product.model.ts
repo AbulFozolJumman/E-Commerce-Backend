@@ -28,39 +28,44 @@ const InventorySchema = new Schema<IInventory>({
   },
 });
 
-const ProductSchema = new Schema<IProduct, ProductModel>({
-  name: {
-    type: String,
-    required: [true, 'Name is required'],
-    trim: true,
+const ProductSchema = new Schema<IProduct, ProductModel>(
+  {
+    name: {
+      type: String,
+      required: [true, 'Name is required'],
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: [true, 'Description is required'],
+    },
+    price: {
+      type: Number,
+      required: [true, 'Price is required'],
+    },
+    category: {
+      type: String,
+      required: [true, 'Category is required'],
+    },
+    tags: {
+      type: [String],
+      required: [true, 'Tags are required'],
+    },
+    variants: {
+      type: [VariantSchema],
+      required: [true, 'Variants are required'],
+      _id: false,
+    },
+    inventory: {
+      type: InventorySchema,
+      required: [true, 'Inventory information is required'],
+      _id: false,
+    },
   },
-  description: {
-    type: String,
-    required: [true, 'Description is required'],
+  {
+    versionKey: false,
   },
-  price: {
-    type: Number,
-    required: [true, 'Price is required'],
-  },
-  category: {
-    type: String,
-    required: [true, 'Category is required'],
-  },
-  tags: {
-    type: [String],
-    required: [true, 'Tags are required'],
-  },
-  variants: {
-    type: [VariantSchema],
-    required: [true, 'Variants are required'],
-    _id: false,
-  },
-  inventory: {
-    type: InventorySchema,
-    required: [true, 'Inventory information is required'],
-    _id: false,
-  },
-});
+);
 
 ProductSchema.index({ name: 'text', description: 'text', tags: 'text' });
 
