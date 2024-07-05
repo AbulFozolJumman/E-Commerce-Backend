@@ -8,6 +8,7 @@ const createOrderIntoDB = async (orderData: IOrder) => {
     throw new Error('Product not found');
   }
 
+  // Checking the quantity of stock
   if (productData.inventory.quantity < orderData.quantity) {
     throw new Error('Insufficient quantity available in inventory');
   }

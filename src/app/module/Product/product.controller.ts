@@ -97,7 +97,7 @@ const updateProduct = async (req: Request, res: Response) => {
     console.log(err);
     res.status(500).json({
       success: false,
-      message: 'Product not found',
+      message: err.message,
     });
   }
 };

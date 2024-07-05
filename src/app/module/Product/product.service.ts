@@ -46,9 +46,13 @@ const deleteSingleProductFromDB = async (productId: string) => {
 
 const searchProductFromDB = async (searchTerm: string) => {
   const regex = new RegExp(searchTerm, 'i');
-  return await Product.find({
+  const result = await Product.find({
     name: { $regex: regex },
   });
+  if (result.length === 0) {
+    throw new Error('Product not found');
+  }
+  return result;
 };
 
 export const ProductServices = {
