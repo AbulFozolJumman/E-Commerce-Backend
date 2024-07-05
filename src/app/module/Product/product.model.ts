@@ -65,8 +65,8 @@ const ProductSchema = new Schema<IProduct, ProductModel>({
 ProductSchema.index({ name: 'text', description: 'text', tags: 'text' });
 
 // Custom static method
-ProductSchema.statics.isProductExists = async function (id: string) {
-  return await this.findOne({ _id: id });
+ProductSchema.statics.isProductExists = async function (productId: string) {
+  return await this.findOne({ _id: productId });
 };
 
 const Product = model<IProduct, ProductModel>('Product', ProductSchema);

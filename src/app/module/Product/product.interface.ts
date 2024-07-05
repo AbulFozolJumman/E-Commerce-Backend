@@ -22,5 +22,5 @@ export type IProduct = {
 
 export interface ProductModel extends Model<IProduct> {
   // eslint-disable-next-line no-unused-vars
-  isProductExists(id: string): Promise<IProduct | null>;
+  isProductExists(productId: string): Promise<IProduct | null>;
 }
