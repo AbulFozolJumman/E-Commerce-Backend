@@ -4,6 +4,10 @@ import Order from './order.model';
 
 const createOrderIntoDB = async (orderData: IOrder) => {
   const productData = await Product.findById(orderData.productId);
+  if (!productData) {
+    throw new Error('Product not found');
+  }
+
   if (productData.inventory.quantity < orderData.quantity) {
     throw new Error('Insufficient quantity available in inventory');
   }

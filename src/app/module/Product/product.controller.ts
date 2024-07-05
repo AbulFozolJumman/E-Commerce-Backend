@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Request, Response } from 'express';
 import { ProductServices } from './product.service';
 import ProductValidationSchema from './product.validation';
@@ -47,10 +48,10 @@ const getAllProducts = async (req: Request, res: Response) => {
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.log(err);
     res.status(500).json({
       success: false,
       message: 'Product not found',
-      error: err.message,
     });
   }
 };
@@ -68,10 +69,10 @@ const getSingleProduct = async (req: Request, res: Response) => {
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.log(err);
     res.status(500).json({
       success: false,
       message: 'Product not found',
-      error: err.message,
     });
   }
 };
@@ -93,10 +94,10 @@ const updateProduct = async (req: Request, res: Response) => {
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.log(err);
     res.status(500).json({
       success: false,
       message: 'Product not found',
-      error: err.message,
     });
   }
 };
@@ -112,10 +113,10 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.log(err);
     res.status(500).json({
       success: false,
       message: 'Product not found',
-      error: err.message,
     });
   }
 };

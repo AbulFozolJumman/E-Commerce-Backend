@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Request, Response } from 'express';
 import OrderValidationSchema from './order.validation';
 import { OrderServices } from './order.service';
@@ -47,10 +48,10 @@ const getAllOrder = async (req: Request, res: Response) => {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.log(err);
     res.status(500).json({
       success: false,
       message: 'Order not found',
-      error: err.message,
     });
   }
 };
