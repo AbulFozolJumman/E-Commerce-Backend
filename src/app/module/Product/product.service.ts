@@ -44,10 +44,18 @@ const deleteSingleProductFromDB = async (productId: string) => {
   return result;
 };
 
+const searchProductFromDB = async (searchTerm: string) => {
+  const regex = new RegExp(searchTerm, 'i');
+  return await Product.find({
+    name: { $regex: regex },
+  });
+};
+
 export const ProductServices = {
   createProductIntoDB,
   getAllProductFromDB,
   getSingleProductFromDB,
   updateSingleProductIntoDB,
   deleteSingleProductFromDB,
+  searchProductFromDB,
 };
